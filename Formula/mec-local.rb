@@ -4,7 +4,7 @@ class MecLocal < Formula
   license "Apache-2.0"
   
   # LOCAL TESTING ONLY - Using local file
-  url "file:///Users/rama/App-Sols/repos/medallia-public/homebrew-mec-cli/mec-1.0.0.tgz" # Update path as needed
+  url "file:///path/to/homebrew-mec-cli/mec-1.0.0.tgz" # Update path as needed
   sha256 "7f2dc0a8036f335013a11c7c01837b7cdce42599cd3e67d5c161882768d815fb"
 
   # No dependencies - standalone binary
