@@ -1,27 +1,39 @@
 class Mec < Formula
   desc "Command-line tool to interact with Medallia Experience Cloud services"
   homepage "https://github.com/medallia/mec-cli"
-  url "https://github.com/medallia/mec-cli/releases/download/v1.0.0/mec-1.0.0.tgz"
-  sha256 "SHA256_PLACEHOLDER" # TODO: Replace with actual SHA256 checksum of the tarball
   license "Apache-2.0"
+  
+  # Multi-platform standalone binaries (no Node.js required)
+  on_macos do
+    if Hardware::CPU.arm?
+      url "https://github.com/medallia/mec-cli/releases/download/v1.0.0/mec-macos-arm64"
+      sha256 "MACOS_ARM64_SHA256_PLACEHOLDER"
+    else
+      url "https://github.com/medallia/mec-cli/releases/download/v1.0.0/mec-macos-x64"
+      sha256 "MACOS_X64_SHA256_PLACEHOLDER"
+    end
+  end
+  
+  on_linux do
+    if Hardware::CPU.arm?
+      url "https://github.com/medallia/mec-cli/releases/download/v1.0.0/mec-linux-arm64"
+      sha256 "LINUX_ARM64_SHA256_PLACEHOLDER"
+    else
+      url "https://github.com/medallia/mec-cli/releases/download/v1.0.0/mec-linux-x64"
+      sha256 "LINUX_X64_SHA256_PLACEHOLDER"
+    end
+  end
 
-  depends_on "node"
+  # No dependencies - standalone binary
+  
+  # Override build system detection to prevent npm install
+  def self.detected_build_systems
+    []
+  end
 
   def install
-    # TODO: Update below with binary build steps when available
-    # Currently, we are downloading the source tarball and building it
-    # Install npm dependencies and build the project
-    system "npm", "install", "--production"
-    system "npm", "run", "build"
-
-    # Install the built CLI
-    libexec.install Dir["*"]
-    
-    # Create a wrapper script that calls the Node.js script
-    (bin/"mec").write <<~EOS
-      #!/bin/bash
-      exec "#{Formula["node"].opt_bin}/node" "#{libexec}/bin/mec.js" "$@"
-    EOS
+    # Install the standalone binary directly
+    bin.install downloaded_file.basename => "mec"
   end
 
   test do
