@@ -5,7 +5,7 @@ class MecLocal < Formula
   
   # LOCAL TESTING ONLY - Using local file
   url "file:///path/to/homebrew-mec-cli/mec-1.0.0.tgz" # Update path as needed
-  sha256 "7f2dc0a8036f335013a11c7c01837b7cdce42599cd3e67d5c161882768d815fb"
+  sha256 "7f2dc0a8036f335013a11c7c01837b7cdce42599cd3e67d5c161882768d815fb" # Update SHA256 (shasum -a 256 mec-1.0.0.tgz) of the tarball
 
   # No dependencies - standalone binary
   
