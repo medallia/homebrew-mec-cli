@@ -5,13 +5,9 @@ class Mec < Formula
 
   # Multi-platform standalone binaries (no Node.js required)
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/medallia/mec-cli/releases/download/v1.0.0/mec-macos-arm64.tgz"
-      sha256 "f1e80befebe4fb673c6a9d8fd81e0a972f91e6e9676298534e58359d6e15d262"
-    else
-      url "https://github.com/medallia/mec-cli/releases/download/v1.0.0/mec-macos-x64.tgz"
-      sha256 "a8ad0e26ff6ed9d182afbeba7d6bed83fa0c4732b56f886723e2985796e65dd2"
-    end
+    # Use x64 for better compatibility - Apple Silicon runs x64 via Rosetta
+    url "https://github.com/medallia/mec-cli/releases/download/v1.0.0/mec-macos-x64.tgz"
+    sha256 "a8ad0e26ff6ed9d182afbeba7d6bed83fa0c4732b56f886723e2985796e65dd2"
   end
   
   on_linux do
@@ -33,8 +29,15 @@ class Mec < Formula
 
   def install
     # Homebrew automatically extracts .tgz files
-    # The binary name is determined by the platform URL (e.g., mec-macos-arm64)
-    binary_name = File.basename(url, ".tgz")
+    # For macOS, we always use x64; for Linux, detect the architecture
+    if OS.mac?
+      binary_name = "mec-macos-x64"
+    elsif Hardware::CPU.arm?
+      binary_name = "mec-linux-arm64"
+    else
+      binary_name = "mec-linux-x64"
+    end
+
     bin.install binary_name => "mec"
   end
 
