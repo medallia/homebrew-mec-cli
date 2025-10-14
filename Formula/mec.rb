@@ -6,17 +6,17 @@ class Mec < Formula
   # Multi-platform standalone binaries (no Node.js required)
   on_macos do
     # Use x64 for better compatibility - Apple Silicon runs x64 via Rosetta
-    url "https://github.com/medallia/mec-cli/releases/download/v1.0.0/mec-macos-x64.tgz"
-    sha256 "a8ad0e26ff6ed9d182afbeba7d6bed83fa0c4732b56f886723e2985796e65dd2"
+    url "https://github.com/medallia/mec-cli/releases/download/v1.1.0/mec-macos-x64.tgz"
+    sha256 "3269ea7d2f0936b3637201cee0417bc8d1369cfd9a9901018e14d9f53d230f20"
   end
   
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/medallia/mec-cli/releases/download/v1.0.0/mec-linux-arm64.tgz"
-      sha256 "a54618980666852df558893e45b27154644891c315aa6498ebf8b3638e5251b1"
+      url "https://github.com/medallia/mec-cli/releases/download/v1.1.0/mec-linux-arm64.tgz"
+      sha256 "8ef4baeefbed57452e693c299c5423b5fd1d48ab10fe739baef5670747ef79db"
     else
-      url "https://github.com/medallia/mec-cli/releases/download/v1.0.0/mec-linux-x64.tgz"
-      sha256 "26136d71a19a07d6cc8c6d44e48117fbb9ee7f0444dc2f2c9b5de825d7399f57"
+      url "https://github.com/medallia/mec-cli/releases/download/v1.1.0/mec-linux-x64.tgz"
+      sha256 "ca4a26c17df626f589743098235028638132647064aa9cc28e269a6f78c2824b"
     end
   end
 
@@ -43,7 +43,7 @@ class Mec < Formula
 
   test do
     # Test that the CLI can display version information
-    assert_match "1.0.0", shell_output("#{bin}/mec --version")
+    assert_match "1.1.0", shell_output("#{bin}/mec --version")
     
     # Test that the CLI can display help
     assert_match "Medallia Experience Cloud", shell_output("#{bin}/mec --help")
