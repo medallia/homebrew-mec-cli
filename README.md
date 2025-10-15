@@ -26,6 +26,25 @@ brew install mec-local
 - **`mec`** - Production formula that downloads binaries from GitHub releases
 - **`mec-local`** - Local testing formula that uses local tarball for development
 
+## Upgrading
+
+### Check for Updates
+```bash
+brew update
+brew outdated
+```
+
+### Upgrade to Latest Version
+```bash
+brew upgrade mec
+```
+
+### Force Reinstall (if upgrade doesn't work)
+If `brew upgrade mec` doesn't detect a new version, you can force a reinstall:
+```bash
+brew reinstall mec
+```
+
 ## Uninstall
 
 ```bash
