@@ -1,6 +1,6 @@
 class Mec < Formula
-  version "1.1.0"
-  revision 1 # Increment this when making a new build or packaging change before next version upgrade
+  version "1.2.0"
+  revision 2 # Increment this when making a new build or packaging change before next version upgrade
 
   desc "A reference implementation for interacting with Medallia Experience Cloud (MEC) services via the command line"
   homepage "https://github.com/medallia/mec-cli"
@@ -10,16 +10,16 @@ class Mec < Formula
   on_macos do
     # Use x64 for better compatibility - Apple Silicon runs x64 via Rosetta
     url "https://github.com/medallia/mec-cli/releases/download/v#{version}/mec-macos-x64.tgz"
-    sha256 "3269ea7d2f0936b3637201cee0417bc8d1369cfd9a9901018e14d9f53d230f20"
+    sha256 "a9b98ee3de2a5402d6cd212f93850d123e6cd629b089035ea88b039b344352c1"
   end
   
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/medallia/mec-cli/releases/download/v#{version}/mec-linux-arm64.tgz"
-      sha256 "8ef4baeefbed57452e693c299c5423b5fd1d48ab10fe739baef5670747ef79db"
+      sha256 "686b413412b7dbd5766daca8c9fadc6253824d01eec05bff6fdc8122f6f2024b"
     else
       url "https://github.com/medallia/mec-cli/releases/download/v#{version}/mec-linux-x64.tgz"
-      sha256 "ca4a26c17df626f589743098235028638132647064aa9cc28e269a6f78c2824b"
+      sha256 "c6a8c323447bd84e9f0f25bacb24b63b24f668d3365a11860fd2a83f171e0b6a"
     end
   end
 
